@@ -1,7 +1,7 @@
 <?php
 
 $servername = "localhost";
-$database = "pwd";
+$database = "uinsi_nim";
 $username = "root";
 $password = "";
  

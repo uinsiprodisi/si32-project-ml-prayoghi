@@ -13,4 +13,3 @@ git add .
 git commit -m "praktikum 1"
 
 git push origin main
-git push origin master
