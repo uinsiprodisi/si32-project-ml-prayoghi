@@ -4,6 +4,14 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
+
+include '../../config/koneksi.php';
+$ambilberita = "SELECT berita.*, kategori_berita.nama_kategori 
+                FROM berita
+                LEFT JOIN kategori_berita ON berita.id_kategori = kategori_berita.id_kategori
+                ORDER BY berita.id_berita DESC
+                ";
+$berita = mysqli_query($conn, $ambilberita);
 ?>
 
 
@@ -34,8 +42,43 @@ if (!isset($_SESSION['user_id'])) {
         <a href="tambahberita.php">+ Tambah Berita</a>
     </header>
 
-    <section>
-        ini halaman Berita
+    <section class="cards">
+      <div class="card">
+        <table>
+          <tr>
+            <th>NO</th>
+            <th>Judul</th>
+            <th>Kategori</th>
+            <th>Foto</th>
+            <th>Detail</th>
+          </tr>
+          <?php
+          $no = 1;
+          if(mysqli_num_rows($berita) > 0){
+            while ($row = mysqli_fetch_assoc($berita)){
+            
+          ?>
+          <tr>
+              <td><?= $no++; ?></td>
+              <td><?= $row['judul_berita'] ?></td>
+              <td><?= $row['nama_kategori'] ?></td>
+              <td>
+                <?php if($row['gambar_berita']){ ?>
+                  <img src="../../uploads/<?= $row['gambar_berita'] ?>" width="80">
+                  <?php } else { ?>
+                    Tidak ada
+                  <?php } ?>
+              </td>
+              <td>EDIT | HAPUS</td>
+          </tr>
+          <?php 
+              
+            }
+          }
+          ?>
+
+        </table>
+      </div>
     </section>
   </div>
 
