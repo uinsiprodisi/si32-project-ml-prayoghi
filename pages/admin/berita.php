@@ -69,7 +69,10 @@ $berita = mysqli_query($conn, $ambilberita);
                     Tidak ada
                   <?php } ?>
               </td>
-              <td>EDIT | HAPUS</td>
+              <td>
+                <a href="editberita.php?id=<?= $row['id_berita']?>"> EDIT</a> |
+                <a href="hapusberita.php?id=<?= $row['id_berita']?>" onclick="return confirm('Yakin ingin menghapus berita ini?')"> Hapus</a>
+              </td>
           </tr>
           <?php 
               

@@ -6,7 +6,8 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 include '../../config/koneksi.php';
-$kategori = mysqli_query($conn, "SELECT * FROM kategori_berita");
+$tes = "SELECT * FROM kategori_berita";
+$kategori = mysqli_query($conn, $tes);
 
 ?>
 
